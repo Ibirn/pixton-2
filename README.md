@@ -8,9 +8,10 @@ We DO output a jpeg, but the data is still scrambled and the image is unusable. 
 
 ### Use
 
-1. Clone the git repo
-2. either run `npm install` or `yarn install`
-3. In your terminal run `node recovery.js <path to corrupted file> <path to output file>`
+1. Clone the git repo with your preferred method.
+2. Change to the root directory of the repo.
+3. Either run `npm install` or `yarn install`
+4. In your terminal run `node recovery.js <path to corrupted file> <path to output file>`
 
 ### Example
 
