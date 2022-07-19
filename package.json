@@ -1,7 +1,7 @@
 {
-  "name": "image-extract",
+  "name": "@ibirn/image-extract",
   "version": "1.0.0",
-  "description": "",
+  "description": "simple image exctractor (unfinished)",
   "main": "extract.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Ibirn/pixton-2.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Keagan Ricciuti",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ibirn/pixton-2/issues"
@@ -19,5 +19,9 @@
   "homepage": "https://github.com/Ibirn/pixton-2#readme",
   "dependencies": {
     "sharp": "^0.30.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {}
 }

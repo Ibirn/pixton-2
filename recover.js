@@ -2,19 +2,17 @@ const fs = require("fs");
 const sharp = require("sharp");
 const args = process.argv;
 
-const uncorrupt = (src, dest) => {
-  //print help if inocorrect number of arguments are passed
+const recover = (src, dest) => {
+  //print help if incorrect number of arguments are passed
   function printHelp() {
     console.log(
-      "please format your request as:\n node recover.js <source file> <destination directory>"
+      "please format your request as:\nnode recover.js <location of source file> <destination directory>"
     );
   }
   if (args.length < 4 || args.length > 4) {
     printHelp();
     return;
   }
-  //begin timer
-  console.time("recovery time:");
 
   //create a readable stream from the file, encode as utf8
   const readableStream = fs.createReadStream(src, { encoding: "utf8" });
@@ -36,15 +34,18 @@ const uncorrupt = (src, dest) => {
       if (err) {
         console.log(err);
       }
-      console.log(data, info);
       writableStream.write(data);
+      console.timeEnd("recovery time");
     })
     .jpeg();
 
   //pipe the readable stream to the sharp instance
   readableStream.pipe(writable);
 
-  //when opening the readable stream, attach headers for a jpeg file
+  readableStream.on("open", () => {
+    //begin timer
+    console.time("recovery time");
+  });
 
   readableStream.on("data", (chunk) => {
     //extract all instances of 9 contiguous numbers
@@ -71,12 +72,7 @@ const uncorrupt = (src, dest) => {
       }
     });
   });
-
-  //attach the EOI marker to the end of the file
-  readableStream.on("close", () => {
-    console.timeEnd("recovery time:");
-  });
 };
 
 //run the function
-uncorrupt(args[2], args[3]);
+recover(args[2], args[3]);
